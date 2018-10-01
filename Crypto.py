@@ -4,8 +4,7 @@ import random
 import requests
 import asyncio
 from itertools import cycle
-
-TOKEN=''
+import os
 
 bot=commands.Bot(command_prefix='.')
 bot.remove_command('help')
@@ -123,4 +122,4 @@ async def info(ctx):
         await bot.remove_reaction(msg,'btc:494145792102105089',bot.user)
 
 bot.loop.create_task(change_status())
-bot.run(TOKEN)
+bot.run(os.environ["TOKEN"])
