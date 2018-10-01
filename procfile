@@ -1,1 +1,1 @@
-worker: python3 Crypto.py
+worker: python Crypto.py
