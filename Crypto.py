@@ -45,25 +45,28 @@ async def change_status():
 
 @bot.command(pass_context=True,aliases=['leave','quit'])
 async def suicide(ctx):
-    author=ctx.message.author
-    await bot.say('Hey, {} You really want to be kicked? Think about it... **YOU HAVE 15sec**'.format(author.mention))
-    r=await bot.wait_for_message(author=author,channel=ctx.message.channel,timeout=15)
-    if r.content == 'yes':
-        msg = await bot.say('***Always in our hearts*** :broken_heart:')
-        await bot.add_reaction(msg,'😫')
-        await bot.add_reaction(msg,'3⃣')
-        await asyncio.sleep(1)
-        await bot.remove_reaction(msg, '3⃣',member=bot.user)
-        await bot.add_reaction(msg,'2⃣')
-        await asyncio.sleep(1)
-        await bot.remove_reaction(msg, '2⃣',member=bot.user)
-        await bot.add_reaction(msg,'1⃣')
-        await asyncio.sleep(1)
-        await bot.remove_reaction(msg, '1⃣',member=bot.user)
-
-        await bot.kick(author)
+    if message.author.bot:
+        return
     else:
-        await bot.say('xd so why you take my time')
+        author=ctx.message.author
+        await bot.say('Hey, {} You really want to be kicked? Think about it... **YOU HAVE 15sec**'.format(author.mention))
+        r=await bot.wait_for_message(author=author,channel=ctx.message.channel,timeout=15)
+        if r.content == 'yes':
+            msg = await bot.say('***Always in our hearts*** :broken_heart:')
+            await bot.add_reaction(msg,'😫')
+            await bot.add_reaction(msg,'3⃣')
+            await asyncio.sleep(1)
+            await bot.remove_reaction(msg, '3⃣',member=bot.user)
+            await bot.add_reaction(msg,'2⃣')
+            await asyncio.sleep(1)
+            await bot.remove_reaction(msg, '2⃣',member=bot.user)
+            await bot.add_reaction(msg,'1⃣')
+            await asyncio.sleep(1)
+            await bot.remove_reaction(msg, '1⃣',member=bot.user)
+
+            await bot.kick(author)
+        else:
+            await bot.say('xd so why you take my time')
         
 @bot.command(pass_context=True)
 async def news(ctx):
