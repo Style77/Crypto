@@ -184,21 +184,21 @@ class Error_handler:
             return
 
         elif isinstance(error, commands.DisabledCommand):
-            await self.bot.send_message(ctx.message.channel, '{} jest wylaczona.'.format(ctx.command))
+            await bot.send_message(ctx.message.channel, '{} is disabled.'.format(ctx.command))
             return
 
         elif isinstance(error, commands.NoPrivateMessage):
             try:
-                embed=discord.Embed(title='{} Nie moze byc uzyte w prywatnych wiadomosciach.'.format(ctx.command))
-                await self.bot.send_message(ctx.message.author, embed=embed)
+                embed=discord.Embed(title="{} Cant be used in pm's".format(ctx.command))
+                await bot.send_message(ctx.message.author, embed=embed)
                 return
             except discord.Forbidden:
                 pass
 
         elif isinstance(error, commands.BadArgument):
             if ctx.command.qualified_name == 'tag list':
-                embed=discord.Embed(title='Nie moge znalezc tej osoby')
-                await self.bot.send_message(ctx.message.channel, embed=embed)
+                embed=discord.Embed(title='Bad argument')
+                await bot.send_message(ctx.message.channel, embed=embed)
                 return
         
 bot.loop.create_task(change_status())
