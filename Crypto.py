@@ -90,7 +90,8 @@ async def news(ctx):
     e=discord.Embed(title='CryptoCurrency',description=submission.title,color=bot.colours[bot.col],timestamp=ctx.message.timestamp)
     e.set_author(name='Reddit',icon_url='https://vignette.wikia.nocookie.net/hayday/images/1/10/Reddit.png/revision/latest?cb=20160713122603')
     e.set_image(url=picture)
-    e.set_footer(text=submission.url)
+    #e.set_footer(text=submission.url)
+    await bot.say(submission.url
     await bot.say(embed=e)
 
 @bot.command(pass_context=True)
