@@ -69,7 +69,7 @@ async def price(ctx,name=None):
         try:
             urlc = f'https://min-api.cryptocompare.com/data/price?fsym={name}&tsyms=USD'
             responsec = requests.get(urlc)
-            valuec = response2.json()['USD']
+            valuec = responsec.json()['USD']
             await bot.sav(f'Price of {name} is {valuec}')
         except Exception as e:
             await bot.say(e)
