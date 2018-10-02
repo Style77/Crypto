@@ -70,15 +70,13 @@ async def suicide(ctx):
         
 @bot.command(pass_context=True)
 async def news(ctx):
-    sub = reddit.subreddit('CryptoCurrency').new(limit=1)
-    picture = sub.url
-    while 'imgur.com/a/' in picture or 'reddit.com/r/' in picture:
-        picture = sub.url
+    sub = reddit.subreddit('CryptoCurrency').hot()
+    post_to_pick = random.randint(1, 5)
+    for i in range(0, post_to_pick):
+        submission = next(x for x in sub if not x.stickied)
+    picture = submission.url
 
-    if 'jpg' not in picture and 'png' not in picture:
-        picture += '.jpg'
-
-    e=discord.Embed(title='CryptoCurrency',color=bot.colours[bot.col])
+    e=discord.Embed(title=submission.display_name,description=sub.description)
     e.set_author(name='Reddit',icon_url='https://vignette.wikia.nocookie.net/hayday/images/1/10/Reddit.png/revision/latest?cb=20160713122603')
     e.set_image(url=picture)
     await bot.say(embed=e)
