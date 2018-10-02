@@ -23,6 +23,8 @@ response2 = requests.get(url2)
 value2 = response2.json()['USD']
 status=["1BTC = {}USD".format(value),"1ETH = {}USD".format(value1),"1DOGE = {}USD".format(value2)]
 
+bot.reddit = praw.Reddit(client_id=os.environ["client_id"],client_secret=os.environ["client_secret"],user_agent='Crypto')
+
 @bot.event
 async def on_ready():
     print('-----------')
