@@ -64,6 +64,14 @@ async def suicide(ctx):
         await bot.kick(author)
     else:
         await bot.say('xd so why you take my time')
+        
+@bot.command(pass_context=True)
+async def news(ctx):
+    news = bot.reddit.subreddit('CryptoCurrency').hot()
+    submission = next(x for x in news if not x.stickied)
+    await bot.say(submission.url)
+    e=discord.Embed(title=submission.title)
+    e.set_author(name='Reddit',icon_url='https://vignette.wikia.nocookie.net/hayday/images/1/10/Reddit.png/revision/latest?cb=20160713122603')
 
 @bot.command(pass_context=True)
 async def price(ctx,name=None):
