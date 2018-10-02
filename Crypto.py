@@ -71,10 +71,9 @@ async def suicide(ctx):
 @bot.command(pass_context=True)
 async def news(ctx):
     sub = reddit.subreddit('CryptoCurrency').new(limit=1)
-    submission = next(x for x in sub if not x.stickied)
-    picture = submission.url
+    picture = sub.url
     while 'imgur.com/a/' in picture or 'reddit.com/r/' in picture:
-        picture = submission.url
+        picture = sub.url
 
     if 'jpg' not in picture and 'png' not in picture:
         picture += '.jpg'
