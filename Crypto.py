@@ -142,5 +142,41 @@ async def info(ctx):
         await bot.remove_reaction(msg,'ethereum:494153529653592085',bot.user)
         await bot.remove_reaction(msg,'btc:494145792102105089',bot.user)
 
+class Error_handler:
+    def __init__(self, bot):
+        self.bot = bot
+
+    async def on_command_error(self, error: Exception, ctx: commands.Context):
+        """The event triggered when an error is raised while invoking a command.
+        ctx   : Context
+        error : Exception"""
+
+        if hasattr(ctx.command, 'on_error'):
+            return
+
+        ignored = (commands.CommandNotFound, commands.UserInputError)
+        error = getattr(error, 'original', error)
+
+        if isinstance(error, ignored):
+            return
+
+        elif isinstance(error, commands.DisabledCommand):
+            await self.bot.send_message(ctx.message.channel, '{} jest wylaczona.'.format(ctx.command))
+            return
+
+        elif isinstance(error, commands.NoPrivateMessage):
+            try:
+                embed=discord.Embed(title='{} Nie moze byc uzyte w prywatnych wiadomosciach.'.format(ctx.command))
+                await self.bot.send_message(ctx.message.author, embed=embed)
+                return
+            except discord.Forbidden:
+                pass
+
+        elif isinstance(error, commands.BadArgument):
+            if ctx.command.qualified_name == 'tag list':
+                embed=discord.Embed(title='Nie moge znalezc tej osoby')
+                await self.bot.send_message(ctx.message.channel, embed=embed)
+                return
+        
 bot.loop.create_task(change_status())
 bot.run(os.environ["TOKEN"])
