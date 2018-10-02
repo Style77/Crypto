@@ -6,6 +6,7 @@ import asyncio
 from itertools import cycle
 import os
 import praw
+import time
 
 bot=commands.Bot(command_prefix='.')
 bot.remove_command('help')
@@ -24,6 +25,15 @@ value2 = response2.json()['USD']
 status=["1BTC = {}USD".format(value),"1ETH = {}USD".format(value1),"1DOGE = {}USD".format(value2)]
 
 reddit = praw.Reddit(client_id=os.environ["client_id"],client_secret=os.environ["client_secret"],user_agent='Crypto')
+
+@bot.command(pass_context=True)
+async def uptime():
+    seconds = time.time() - start_time
+    m, s = divmod(seconds, 60)
+    h, m = divmod(m, 60)
+    d, h = divmod(h, 24)
+    w, d = divmod(d, 7)
+    await bot.say(f"Jestem online juz `{int(w)}tyg : {int(d)}dni : {int(h)}h : {int(m)}min : {int(s)}sek`")
 
 @bot.event
 async def on_ready():
