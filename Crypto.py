@@ -68,9 +68,8 @@ async def suicide(ctx):
 @bot.command(pass_context=True)
 async def news(ctx):
     news = bot.reddit.subreddit('CryptoCurrency').hot()
-    submission = next(x for x in news if not x.stickied)
-    await bot.say(submission.url)
-    e=discord.Embed(title=submission.title)
+    await bot.say(news.url)
+    e=discord.Embed(title=news.title)
     e.set_author(name='Reddit',icon_url='https://vignette.wikia.nocookie.net/hayday/images/1/10/Reddit.png/revision/latest?cb=20160713122603')
 
 @bot.command(pass_context=True)
