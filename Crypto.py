@@ -76,7 +76,7 @@ async def news(ctx):
         submission = next(x for x in sub if not x.stickied)
     picture = submission.url
 
-    e=discord.Embed(title='CryptoCurrency',description=submission.description[3],color=bot.colours[bot.col])
+    e=discord.Embed(title='CryptoCurrency',description=submission.title[2],color=bot.colours[bot.col])
     e.set_author(name='Reddit',icon_url='https://vignette.wikia.nocookie.net/hayday/images/1/10/Reddit.png/revision/latest?cb=20160713122603')
     e.set_image(url=picture)
     await bot.say(embed=e)
