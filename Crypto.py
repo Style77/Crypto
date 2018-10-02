@@ -92,7 +92,7 @@ async def news(ctx):
     e.set_image(url=picture)
     #e.set_footer(text=submission.url)
     await bot.say(embed=e)
-    await bot.say(submission.url
+    await bot.say(submission.url)
 
 @bot.command(pass_context=True)
 async def price(ctx,name=None):
