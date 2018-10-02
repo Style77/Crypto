@@ -76,7 +76,7 @@ async def news(ctx):
         submission = next(x for x in sub if not x.stickied)
     picture = submission.url
 
-    e=discord.Embed(title='CryptoCurrency',description=submission.title,color=bot.colours[bot.col])
+    e=discord.Embed(title='CryptoCurrency',description=submission.title,color=bot.colours[bot.col],timestamp=ctx.message.timestamp)
     e.set_author(name='Reddit',icon_url='https://vignette.wikia.nocookie.net/hayday/images/1/10/Reddit.png/revision/latest?cb=20160713122603')
     e.set_image(url=picture)
     e.set_footer(text=submission.url)
@@ -101,7 +101,7 @@ async def serverinfo(ctx):
     nazwy = [role.name for role in server.role_hierarchy]
     value = "\n".join(nazwy)
     servercreated = str(server.created_at).split('.', 1)[0]
-    e=discord.Embed(description=server.name,color=self.bot.colours[self.bot.col],timestamp=ctx.message.timestamp)
+    e=discord.Embed(description=server.name,color=bot.colours[bot.col],timestamp=ctx.message.timestamp)
     e.set_author(name=server.name,icon_url=server.icon_url)
     e.set_thumbnail(url=server.icon_url)
     e.add_field(name='Server created at',value=servercreated)
@@ -128,7 +128,7 @@ async def info(ctx):
     url2 = 'https://min-api.cryptocompare.com/data/price?fsym=DOGE&tsyms=USD'
     response2 = requests.get(url2)
     value2 = response2.json()['USD']
-    e=discord.Embed(title="Select the reaction to get info about currency and price",color=bot.colours[bot.col])
+    e=discord.Embed(title="Select the reaction to get info about currency and price",color=bot.colours[bot.col],timestamp=ctx.message.timestamp)
     e.set_author(name='Crypto')
     e.set_footer(text='Made by: `Style dont mention me ples#9445` | Avatar by: `K*urwaKruci#4055`')
     msg = await bot.say(embed=e)
