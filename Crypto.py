@@ -91,8 +91,8 @@ async def news(ctx):
     e.set_author(name='Reddit',icon_url='https://vignette.wikia.nocookie.net/hayday/images/1/10/Reddit.png/revision/latest?cb=20160713122603')
     e.set_image(url=picture)
     #e.set_footer(text=submission.url)
-    await bot.say(submission.url
     await bot.say(embed=e)
+    await bot.say(submission.url
 
 @bot.command(pass_context=True)
 async def price(ctx,name=None):
