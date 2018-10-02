@@ -47,6 +47,7 @@ async def suicide(ctx):
     r=await bot.wait_for_message(author=author,channel=ctx.message.channel,timeout=15)
     if r.content == 'yes':
         msg = await bot.say('***Always in our hearts*** :broken_heart:')
+        await bot.add_reaction(msg,'😫')
         await bot.add_reaction(msg,'3⃣')
         await asyncio.sleep(1)
         await bot.remove_reaction(msg, '3⃣',member=bot.user)
