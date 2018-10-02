@@ -74,7 +74,7 @@ async def news(ctx):
     submission = next(x for x in sub if not x.stickied)
     picture = submission.url
     while 'imgur.com/a/' in picture or 'reddit.com/r/' in picture:
-        picture = sub.url
+        picture = submission.url
 
     if 'jpg' not in picture and 'png' not in picture:
         picture += '.jpg'
