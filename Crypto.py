@@ -23,7 +23,7 @@ response2 = requests.get(url2)
 value2 = response2.json()['USD']
 status=["1BTC = {}USD".format(value),"1ETH = {}USD".format(value1),"1DOGE = {}USD".format(value2)]
 
-bot.reddit = praw.Reddit(client_id=os.environ["client_id"],client_secret=os.environ["client_secret"],user_agent='Crypto')
+reddit = praw.Reddit(client_id=os.environ["client_id"],client_secret=os.environ["client_secret"],user_agent='Crypto')
 
 @bot.event
 async def on_ready():
@@ -67,9 +67,9 @@ async def suicide(ctx):
         
 @bot.command(pass_context=True)
 async def news(ctx):
-    news = bot.reddit.subreddit('CryptoCurrency').hot()
+    news = reddit.subreddit('CryptoCurrency').hot()
     await bot.say(news.url)
-    e=discord.Embed(title=news.title)
+    e=discord.Embed(title=news.display_name)
     e.set_author(name='Reddit',icon_url='https://vignette.wikia.nocookie.net/hayday/images/1/10/Reddit.png/revision/latest?cb=20160713122603')
 
 @bot.command(pass_context=True)
