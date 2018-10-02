@@ -65,10 +65,10 @@ async def suicide(ctx):
     else:
         await bot.say('xd so why you take my time')
         
-@bot.command(pass_context=True)
+@@bot.command(pass_context=True)
 async def news(ctx):
     sub = reddit.subreddit('CryptoCurrency').hot()
-    submissions = list(reddit.subreddit(sub).hot)
+    submissions = reddit.subreddit(sub).hot
     picture = submissions[1].url
     while 'imgur.com/a/' in picture or 'reddit.com/r/' in picture:
         picture = submissions[1].url
