@@ -62,16 +62,18 @@ async def suicide(ctx):
         await bot.say('xd so why you take my time')
 
 @bot.command(pass_context=True)
-async def marry(ctx,member=discord.Member):
-    author=ctx.message.author
-    user=member
-    await bot.say('{} want to marry {}.\nIf you agree write "yes"'.format(author.mention,user))
-    z=await bot.wait_for_message(author=member,channel=ctx.message.channel,timeout=15)
-    if z.content == 'yes':
-        await bot.say('CONGRATULATIONS {} married {}'.format(author.mention,user))
-        await bot.kick(author)
+async def price(ctx,name=None):
+    if not name:
+        await bot.say('`.price DASH` - or something')
     else:
-        await bot.say('Im sorry {}'.format(author.mention))
+        try:
+            urlc = f'https://min-api.cryptocompare.com/data/price?fsym={name}&tsyms=USD'
+            responsec = requests.get(urlc)
+            valuec = response2.json()['USD']
+            await bot.sav(f'Price of {name} is {valuec}')
+        except Exception as e:
+            await bot.say(e)
+            await bot.say('I cant find that currency')
 
 @bot.command(pass_context=True,aliases=['help'])
 async def info(ctx):
