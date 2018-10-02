@@ -34,7 +34,7 @@ async def uptime():
     h, m = divmod(m, 60)
     d, h = divmod(h, 24)
     w, d = divmod(d, 7)
-    await bot.say(f"Jestem online juz `{int(w)}tyg : {int(d)}dni : {int(h)}h : {int(m)}min : {int(s)}sek`")
+    await bot.say(f"Im online: `{int(w)}weeks : {int(d)}days : {int(h)}h : {int(m)}m : {int(s)}s`")
 
 @bot.event
 async def on_ready():
