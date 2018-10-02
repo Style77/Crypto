@@ -67,18 +67,19 @@ async def suicide(ctx):
         
 @bot.command(pass_context=True)
 async def news(ctx):
-    for sub in reddit.subreddit('CryptoCurrency').new():
-        #picture = sub[1].url
-        #while 'imgur.com/a/' in picture or 'reddit.com/r/' in picture:
-            #picture = sub[1].url
+    sub = reddit.subreddit('CryptoCurrency').new(limit=1)
+    submission = next(x for x in sub if not x.stickied)
+    picture = submission[1].url
+    while 'imgur.com/a/' in picture or 'reddit.com/r/' in picture:
+        picture = sub[1].url
 
-        #if 'jpg' not in picture and 'png' not in picture:
-            #picture += '.jpg'
-        await bot.say(sub.url)
-        e=discord.Embed(title=sub.title,description=sub.description)
-        e.set_author(name='Reddit',icon_url='https://vignette.wikia.nocookie.net/hayday/images/1/10/Reddit.png/revision/latest?cb=20160713122603')
-        #e.set_image(url=picture)
-        await bot.say(embed=e)
+    if 'jpg' not in picture and 'png' not in picture:
+        picture += '.jpg'
+
+    e=discord.Embed(title=submission.display_name,description=sub.description)
+    e.set_author(name='Reddit',icon_url='https://vignette.wikia.nocookie.net/hayday/images/1/10/Reddit.png/revision/latest?cb=20160713122603')
+    e.set_image(url=picture)
+    await bot.say(embed=e)
 
 @bot.command(pass_context=True)
 async def price(ctx,name=None):
