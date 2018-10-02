@@ -94,6 +94,28 @@ async def price(ctx,name=None):
         except Exception as e:
             await bot.say('I cant find that currency')
 
+@bot.command(pass_context=True,aliases=['server'])
+async def serverinfo(ctx):
+    server=ctx.message.server
+    nazwy = [role.name for role in server.role_hierarchy]
+    value = "\n".join(nazwy)
+    servercreated = str(server.created_at).split('.', 1)[0]
+    e=discord.Embed(description=server.name,color=self.bot.colours[self.bot.col],timestamp=ctx.message.timestamp)
+    e.set_author(name=server.name,icon_url=server.icon_url)
+    e.set_thumbnail(url=server.icon_url)
+    e.add_field(name='Server created at',value=servercreated)
+    e.add_field(name='Owner',value=server.owner.mention)
+    e.add_field(name='Members',value=server.member_count)
+    e.add_field(name='Region',value=server.region)
+    e.add_field(name='Default channel',value=server.default_channel)
+    e.add_field(name='MFA level:',value=str(server.mfa_level))
+    e.add_field(name='AFK time',value=str(server.afk_timeout)+'sek')
+    e.add_field(name='AFK channel',value=str(server.afk_channel))
+    e.add_field(name='Big? +250members',value=str(server.large))
+    e.add_field(name='Hierarchy',value=str(value),inline=True)
+    e.set_footer(text='ID: {}'.format(server.id))
+    await bot.say(embed=e)            
+            
 @bot.command(pass_context=True,aliases=['help'])
 async def info(ctx):
     url = 'https://api.coindesk.com/v1/bpi/currentprice/BTC.json'
