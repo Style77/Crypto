@@ -75,7 +75,7 @@ async def news(ctx):
         #if 'jpg' not in picture and 'png' not in picture:
             #picture += '.jpg'
         await bot.say(sub.url)
-        e=discord.Embed(title=sub.display_name,description=sub.description)
+        e=discord.Embed(title=sub.title,description=sub.description)
         e.set_author(name='Reddit',icon_url='https://vignette.wikia.nocookie.net/hayday/images/1/10/Reddit.png/revision/latest?cb=20160713122603')
         #e.set_image(url=picture)
         await bot.say(embed=e)
