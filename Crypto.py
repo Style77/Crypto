@@ -5,6 +5,7 @@ import requests
 import asyncio
 from itertools import cycle
 import os
+import praw
 
 bot=commands.Bot(command_prefix='.')
 bot.remove_command('help')
