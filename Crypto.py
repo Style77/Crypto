@@ -65,7 +65,7 @@ async def suicide(ctx):
     else:
         await bot.say('xd so why you take my time')
         
-@@bot.command(pass_context=True)
+@bot.command(pass_context=True)
 async def news(ctx):
     sub = reddit.subreddit('CryptoCurrency').hot()
     submissions = reddit.subreddit(sub).hot
