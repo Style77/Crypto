@@ -78,7 +78,52 @@ async def suicide(ctx):
             await bot.kick(author)
         else:
             await bot.say('xd so why you take my time')
-        
+
+@bot.command(pass_context=True)
+async def user(ctx,user:discord.Member = None):
+    if not user:
+        author = ctx.message.author
+        authorjoinedat = str(author.joined_at).split('.', 1)[0]
+        authorcreatedat = str(author.created_at).split('.', 1)[0]
+        userembed = discord.Embed(
+            title="Nazwa:",
+            description=author.name,
+            color=author.color,
+            timestamp=ctx.message.timestamp)
+        userembed.set_author(name=author.display_name,icon_url=author.avatar_url)
+        userembed.set_thumbnail(url=author.avatar_url)
+        userembed.add_field(name="Dołaczył do nas:",value=authorjoinedat)
+        userembed.add_field(name="Stworzył konto:", value=authorcreatedat)
+        userembed.add_field(name="Gra w:", value=author.game)
+        userembed.add_field(name="status:", value=author.status)
+        userembed.add_field(name="kolor:", value=author.color)
+        userembed.add_field(name="Tag:", value='`'+author.discriminator+'`')
+        userembed.add_field(name='Najwysza ranga: ',value=str(author.top_role))
+        userembed.add_field(name='Bot? ',value=str(author.bot))
+        userembed.set_footer(text='ID: '+author.id)
+        await bot.say(embed=userembed)
+    else:
+        userjoinedat = str(user.joined_at).split('.', 1)[0]
+        usercreatedat = str(user.created_at).split('.', 1)[0]
+
+        userembed = discord.Embed(
+            title="Nazwa:",
+            description=user.name,
+            color=user.color,
+            timestamp=ctx.message.timestamp)
+        userembed.set_author(name=user.display_name,icon_url=user.avatar_url)
+        userembed.set_thumbnail(url=user.avatar_url)
+        userembed.add_field(name="Dołaczył do nas:",value=userjoinedat)
+        userembed.add_field(name="Stworzył konto:", value=usercreatedat)
+        userembed.add_field(name="Gra w:", value=user.game)
+        userembed.add_field(name="status:", value=user.status)
+        userembed.add_field(name="kolor:", value=user.color)
+        userembed.add_field(name="Tag:", value='`'+user.discriminator+'`')
+        userembed.add_field(name='Najwysza ranga: ',value=str(user.top_role))
+        userembed.add_field(name='Bot? ',value=str(user.bot))
+        userembed.set_footer(text='ID: '+user.id)
+        await bot.say(embed=userembed)            
+            
 @bot.command(pass_context=True)
 async def news(ctx):
     if ctx.message.author.bot:
