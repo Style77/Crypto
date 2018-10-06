@@ -56,7 +56,7 @@ async def change_status():
 
 @bot.command(pass_context=True,aliases=['leave','quit'])
 async def suicide(ctx):
-    if message.author.bot:
+    if ctx.message.author.bot:
         return
     else:
         author=ctx.message.author
@@ -81,7 +81,7 @@ async def suicide(ctx):
         
 @bot.command(pass_context=True)
 async def news(ctx):
-    if message.author.bot:
+    if ctx.message.author.bot:
         return
     else:    
         sub = reddit.subreddit('CryptoCurrency').new()
@@ -99,7 +99,7 @@ async def news(ctx):
 
 @bot.command(pass_context=True)
 async def price(ctx,name=None):
-    if message.author.bot:
+    if ctx.message.author.bot:
         return
     else:   
         if not name:
@@ -115,7 +115,7 @@ async def price(ctx,name=None):
 
 @bot.command(pass_context=True,aliases=['server'])
 async def serverinfo(ctx):
-     if message.author.bot:
+     if ctx.message.author.bot:
         return
      else:       
         server=ctx.message.server
@@ -140,7 +140,7 @@ async def serverinfo(ctx):
             
 @bot.command(pass_context=True,aliases=['help'])
 async def info(ctx):
-    if message.author.bot:
+    if ctx.message.author.bot:
         return
     else:        
         url = 'https://api.coindesk.com/v1/bpi/currentprice/BTC.json'
