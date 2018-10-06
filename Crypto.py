@@ -81,6 +81,8 @@ async def suicide(ctx):
 
 @bot.command(pass_context=True)
 async def user(ctx,user:discord.Member = None):
+    if ctx.message.author.bot:
+        return
     if not user:
         author = ctx.message.author
         authorjoinedat = str(author.joined_at).split('.', 1)[0]
