@@ -88,7 +88,7 @@ async def user(ctx,user:discord.Member = None):
         authorjoinedat = str(author.joined_at).split('.', 1)[0]
         authorcreatedat = str(author.created_at).split('.', 1)[0]
         userembed = discord.Embed(
-            title="Nazwa:",
+            title="Name:",
             description=author.name,
             color=author.color,
             timestamp=ctx.message.timestamp)
@@ -109,7 +109,7 @@ async def user(ctx,user:discord.Member = None):
         usercreatedat = str(user.created_at).split('.', 1)[0]
 
         userembed = discord.Embed(
-            title="Nazwa:",
+            title="Name:",
             description=user.name,
             color=user.color,
             timestamp=ctx.message.timestamp)
