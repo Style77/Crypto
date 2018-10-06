@@ -117,7 +117,7 @@ async def price(ctx,name=None):
 async def serverinfo(ctx):
      if message.author.bot:
         return
-    else:       
+     else:       
         server=ctx.message.server
         nazwy = [role.name for role in server.role_hierarchy]
         value = "\n".join(nazwy)
