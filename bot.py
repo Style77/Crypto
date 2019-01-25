@@ -10,17 +10,13 @@ opts = {'command_prefix': commands.when_mentioned_or("?"),
 bot=commands.Bot(**opts)
 ext = ['cogs.stars','cogs.mod']
 
-def is_owner(ctx):
-    if ctx.author.id == 185712375628824577:
-        return True
-
 @bot.event
 async def on_ready():
     print('Im working')
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="You"))
 
 @bot.command(hidden=True, name='reload',aliases=['r'])
-@is_owner(ctx)
+@commands.is_owner()
 async def _reload(ctx, *, module: str):
     'Reloads a module.'
     try:
