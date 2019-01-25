@@ -12,7 +12,7 @@ ext = ['cogs.stars','cogs.mod']
 
 def is_owner(ctx):
     if ctx.author.id == 185712375628824577:
-        return True:
+        return True
 
 @bot.event
 async def on_ready():
